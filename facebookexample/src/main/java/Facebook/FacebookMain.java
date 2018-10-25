@@ -31,7 +31,7 @@ public class FacebookMain {
 		 */
 //		String accessToken4 = "EAAGZBEccjciEBACLQCLnTN82o8ZBa7EtfC80jeEkPFSrZAZB8zunAsYFgo9g0CSWN7jFcXSVuIaqQlN09RBe4IIaQAGc7SqQdedtTQ0wz3Oug6VZAgZA6jNxeWkGE7mjp06s3t3nSgGmTOa4zaV3ZCaZCBPV5PjfcvLQ0rZB1ISq2zNoBjjLs5C7uz6c5e0d6ogItNRM0KbRJQwZDZD";
 //		FacebookClient fbClient4 = new DefaultFacebookClient(accessToken4);
-//		AccessToken extendedAccessToken4 = fbClient4.obtainExtendedAccessToken("490458541421089","b4b0922f88578643b1c3795ed4cde605");
+//		AccessToken extendedAccessToken2 = fbClient4.obtainExtendedAccessToken("490458541421089","b4b0922f88578643b1c3795ed4cde605");
 //		System.out.println("ExtendedAccessToken: "+extendedAccessToken4.getAccessToken());
 //		System.out.println("Expires: " + extendedAccessToken4.getExpires());
 //
