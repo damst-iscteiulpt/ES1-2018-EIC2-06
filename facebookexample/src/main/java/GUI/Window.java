@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.channels.ShutdownChannelGroupException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,6 +25,7 @@ public class Window {
 	private boolean facebook = false;
 	private boolean twitter = false;
 	private boolean email = false;
+	private JButton Login;
 	
 	public Window() {
 		frame = new JFrame("Test");
@@ -54,20 +56,20 @@ public class Window {
 	}
 	
 	private void addFrameContent() {
-		/*
 		//Painel Login, Sign-up;
 		JPanel p1 = new JPanel();
 		frame.add(p1, BorderLayout.CENTER);
 		
 		//Login: e-mail, password;
-		JButton Login = new JButton("Login");
+		Login = new JButton("Login");
 		Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if(!facebook && !twitter && !email) {
+					JOptionPane.showMessageDialog(frame, "Select one of the 3 options on the left side of the screen", "ERROR(No option found) ", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
-		//p1.add(Login, BorderLayout.CENTER);
-		*/
+		p1.add(Login, BorderLayout.CENTER);
 		//Sign-up:e-mail, password, confirm password;
 		/*
 		JButton Sign = new JButton("Sign-Up");
@@ -97,7 +99,15 @@ public class Window {
 	    Facebook.setFont(new Font("Tahoma", Font.BOLD, 20));
 	    Facebook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				facebookActivate();
+				if(facebook == false) {
+					Login.setText("Login in Facebook");
+					Login.setBackground(new Color(59, 89, 182));
+					Login.setForeground(Color.WHITE);
+					facebook = true;
+					twitter = false;
+					email = false;
+				}
+				
 			}
 		});
 		p.add(Facebook);
@@ -107,6 +117,19 @@ public class Window {
 	    Twitter.setForeground(Color.WHITE);
 	    Twitter.setFocusPainted(false);
 	    Twitter.setFont(new Font("Tahoma", Font.BOLD, 20));
+	    Twitter.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		if(twitter == false) {
+	    			Login.setText("Login in Twitter");
+	    			Login.setBackground(new Color(29, 202, 255));
+	    		    Login.setForeground(Color.WHITE);
+	    			facebook = false;
+	    			twitter = true;
+	    			email = false;
+	    		}
+			
+	    	}
+	    });
 		p.add(Twitter);
 		
 		JButton Email = new JButton ("E-mail");
@@ -114,16 +137,29 @@ public class Window {
 	    Email.setForeground(Color.WHITE);
 	    Email.setFocusPainted(false);
 	    Email.setFont(new Font("Tahoma", Font.BOLD, 20));
+	    Email.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		if(email == false) {
+	    			Login.setText("Login in Email");
+	    			Login.setBackground(new Color(178, 49, 33));
+	    		    Login.setForeground(Color.WHITE);
+	    			facebook = false;
+	    			twitter = false;
+	    			email = true;
+	    		}
+			
+	    	}
+	    });
 		p.add(Email);	
 	}
-	
+/*
 	public void facebookActivate() {
 		if(facebook == false) {
 			//Painel Login, Sign-up;
 			JPanel p1 = new JPanel();
 			
 			//Login: e-mail, password;
-			JButton Login = new JButton("Login");
+			JButton Login = new JButton("Login in Facebook");
 			Login.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -139,6 +175,28 @@ public class Window {
 		frameRef();
 	}
 	
+	public void TwitterActivate() {
+		if(twitter == false) {
+			//Painel Login, Sign-up;
+			JPanel p2 = new JPanel();
+			
+			//Login: e-mail, password;
+			JButton Loginv2 = new JButton("Login in Twitter");
+			Loginv2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			p2.add(Loginv2);
+			frame.add(p2, BorderLayout.CENTER);
+			
+			facebook = false;
+			twitter = true;
+			email = false;
+		}
+		frameRef();
+	}
+*/
 	public void frameRef() {
 		frame.invalidate();
 		frame.validate();
