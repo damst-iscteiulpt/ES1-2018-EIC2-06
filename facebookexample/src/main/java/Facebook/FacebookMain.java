@@ -23,7 +23,7 @@ public class FacebookMain {
 		User me2 = fbClient2.fetchObject("me", User.class);
 		System.out.println("Facebook:");
 		System.out.println("Id: " + me2.getId());
-		System.out.println("Name: " + me2.getName());
+		System.out.println("Name: " + me2.getName()); 
 
 		/* 
 		 * Facebook API Tutorials in Java # 4 | Create Your Own Fb APP & Extend User Access Token  
