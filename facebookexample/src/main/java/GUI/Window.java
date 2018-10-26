@@ -9,14 +9,19 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.nio.channels.ShutdownChannelGroupException;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 
 public class Window {
@@ -28,7 +33,7 @@ public class Window {
 	private JButton Login;
 	
 	public Window() {
-		frame = new JFrame("Test");
+		frame = new JFrame("ES1 Project");
 		
 		// para que o botao de fechar a janela termine a aplicacao
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -87,6 +92,24 @@ public class Window {
 		JMenu menu = new JMenu("Menu");
 		menuBar.add(menu);
 		
+		JMenuItem filter = new JMenuItem("Filter");
+		filter.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+            	JOptionPane.showMessageDialog(frame, "FALTA FAZER O FILTRO", "NOT DONE 404 ", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+		menu.add(filter);
+		
+		JMenuItem exit = new JMenuItem("Exit");
+		exit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+            	if (JOptionPane.showConfirmDialog(null, "Are you sure?, When exit we will disconnect", "Exit app",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            	    System.exit(0);
+            	}
+            }
+        });
+		menu.add(exit);
+		
 		//Painel das Redes Sociais
 		JPanel p = new JPanel();
 		frame.add(p, BorderLayout.WEST);
@@ -100,12 +123,11 @@ public class Window {
 	    Facebook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(facebook == false) {
-					Login.setText("Login in Facebook");
+					/*Login.setText("Login in Facebook");
 					Login.setBackground(new Color(59, 89, 182));
-					Login.setForeground(Color.WHITE);
+					Login.setForeground(Color.WHITE);*/
+					Login.setVisible(false);
 					facebook = true;
-					twitter = false;
-					email = false;
 				}
 				
 			}
@@ -120,12 +142,11 @@ public class Window {
 	    Twitter.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		if(twitter == false) {
-	    			Login.setText("Login in Twitter");
+	    			/*Login.setText("Login in Twitter");
 	    			Login.setBackground(new Color(29, 202, 255));
-	    		    Login.setForeground(Color.WHITE);
-	    			facebook = false;
+	    		    Login.setForeground(Color.WHITE);*/
+	    			Login.setVisible(false);
 	    			twitter = true;
-	    			email = false;
 	    		}
 			
 	    	}
@@ -140,11 +161,10 @@ public class Window {
 	    Email.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		if(email == false) {
-	    			Login.setText("Login in Email");
+	    			/*Login.setText("Login in Email");
 	    			Login.setBackground(new Color(178, 49, 33));
-	    		    Login.setForeground(Color.WHITE);
-	    			facebook = false;
-	    			twitter = false;
+	    		    Login.setForeground(Color.WHITE);*/
+	    			Login.setVisible(false);
 	    			email = true;
 	    		}
 			
