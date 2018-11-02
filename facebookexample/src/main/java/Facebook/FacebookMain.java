@@ -9,25 +9,36 @@ import com.restfb.types.Post;
 import com.restfb.types.User;
 
 public class FacebookMain {
+
 	public static void main(String[] args) {
-		/* 
-		 * Facebook API Tutorials in Java # 1 | Setup Development Environment 
-		 * https://www.youtube.com/watch?v=m14hYs1T3FA&index=1&list=PLYPFxrXyK0BwiXNe09hTPjFqYbsWv8gxb
+		/*
+		 * Facebook API Tutorials in Java # 1 | Setup Development Environment
+		 * https://www.youtube.com/watch?v=m14hYs1T3FA&index=1&list=
+		 * PLYPFxrXyK0BwiXNe09hTPjFqYbsWv8gxb
 		 */
-		/* 
+		/*
 		 * Facebook API Tutorials in Java # 2 | Get User Access Token
-		 * https://www.youtube.com/watch?v=GwbO_PdwK_4&index=2&list=PLYPFxrXyK0BwiXNe09hTPjFqYbsWv8gxb
+		 * https://www.youtube.com/watch?v=GwbO_PdwK_4&index=2&list=
+		 * PLYPFxrXyK0BwiXNe09hTPjFqYbsWv8gxb
 		 */
-		String accessToken2 = "EAACVRZBPYZCzwBAP194Xm5TlFlXO2B39Ul4QfDdxcYZCOI5KTHlRZBSWZBQXoqAYSjGdAygCiZCp4ymPrHwDohDRBrX1R7w156hmeycZCyZBMnJ4ln0hfIXKcqUdkCbWWOI7CMrzxmnp0Q70ZBefXZBczSUReHZAIjbAAZAygQSZBSZBDemDurxZB5Vv19mXVvoJXmonI0LQviQDgMAnQZDZD";
+		
+		/**
+		 * 
+		 * This String represents the access token used to get info about the
+		 * Facebook posts when the code is executed.
+		 * 
+		 */
+		String accessToken2 = "EAACVRZBPYZCzwBADzg3t36I3WLJ9zVDolDrK2RRYWGZComgvuZCFe3SlW7yVZB9FmhJGElopG2VLkAg4ReZB1pZA1befZApXEu7CEmYXPKO6R08ZAB5IvnDdDVFoA6ZBdd2ZARtayQHWaeky0fLdwWdUAQT3tscUz9eU3qeaawLiSDXtJRKD8B6t15McDP9dvXXw4ZCSwmZApZAcsFrwZDZD";
 		FacebookClient fbClient2 = new DefaultFacebookClient(accessToken2);
 		User me2 = fbClient2.fetchObject("me", User.class);
 		System.out.println("Facebook:");
 		System.out.println("Id: " + me2.getId());
-		System.out.println("Name: " + me2.getName()); 
+		System.out.println("Name: " + me2.getName());
 
-		/* 
-		 * Facebook API Tutorials in Java # 4 | Create Your Own Fb APP & Extend User Access Token  
-		 * https://www.youtube.com/watch?v=qFZazZ1JXsM&list=PLYPFxrXyK0BwiXNe09hTPjFqYbsWv8gxb&index=5
+		/*
+		 * Facebook API Tutorials in Java # 4 | Create Your Own Fb APP & Extend User
+		 * Access Token https://www.youtube.com/watch?v=qFZazZ1JXsM&list=
+		 * PLYPFxrXyK0BwiXNe09hTPjFqYbsWv8gxb&index=5
 		 */
 //		String accessToken4 = "EAAGZBEccjciEBACLQCLnTN82o8ZBa7EtfC80jeEkPFSrZAZB8zunAsYFgo9g0CSWN7jFcXSVuIaqQlN09RBe4IIaQAGc7SqQdedtTQ0wz3Oug6VZAgZA6jNxeWkGE7mjp06s3t3nSgGmTOa4zaV3ZCaZCBPV5PjfcvLQ0rZB1ISq2zNoBjjLs5C7uz6c5e0d6ogItNRM0KbRJQwZDZD";
 //		FacebookClient fbClient4 = new DefaultFacebookClient(accessToken4);
@@ -43,23 +54,23 @@ public class FacebookMain {
 //		accessToken5 = "EAAGZBEccjciEBACLQCLnTN82o8ZBa7EtfC80jeEkPFSrZAZB8zunAsYFgo9g0CSWN7jFcXSVuIaqQlN09RBe4IIaQAGc7SqQdedtTQ0wz3Oug6VZAgZA6jNxeWkGE7mjp06s3t3nSgGmTOa4zaV3ZCaZCBPV5PjfcvLQ0rZB1ISq2zNoBjjLs5C7uz6c5e0d6ogItNRM0KbRJQwZDZD";	
 //		FacebookClient fbClient5 = new DefaultFacebookClient(accessToken5);
 
-		Connection<Post> result = fbClient2.fetchConnection("me/feed",Post.class);
+		Connection<Post> result = fbClient2.fetchConnection("me/feed", Post.class);
 		System.out.println("\nPosts:");
 		int counter5 = 0;
 		int counterTotal = 0;
 		for (List<Post> page : result) {
 			for (Post aPost : page) {
 				// Filters only posts that contain the word "Inform"
-				if (aPost.getMessage() != null ) {
-					System.out.println("---- Post "+ counter5 + " ----");
-					System.out.println("Id: "+"fb.com/"+aPost.getId());
-					System.out.println("Message: "+aPost.getMessage());
-					System.out.println("Created: "+aPost.getCreatedTime());
+				if (aPost.getMessage() != null) {
+					System.out.println("---- Post " + counter5 + " ----");
+					System.out.println("Id: " + "fb.com/" + aPost.getId());
+					System.out.println("Message: " + aPost.getMessage());
+					System.out.println("Created: " + aPost.getCreatedTime());
 					counter5++;
 				}
 				counterTotal++;
 			}
 		}
-		System.out.println("-------------\nNº of Results: " + counter5+"/"+counterTotal);		
+		System.out.println("-------------\nNº of Results: " + counter5 + "/" + counterTotal);
 	}
 }

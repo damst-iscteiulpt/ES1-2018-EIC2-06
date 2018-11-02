@@ -32,6 +32,15 @@ public class Window {
 	private boolean email = false;
 	private JButton Login;
 	
+	
+	/**
+	 * 
+	 * 
+	 * This constructs the window that will be viewed in a JFrame
+	 * upon execution of the code.
+	 * 
+	 * 
+	 */
 	public Window() {
 		frame = new JFrame("ES1 Project");
 		
