@@ -1,6 +1,9 @@
 package SocialNetworks;
 
 import java.util.List;
+
+import org.junit.Test;
+
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;

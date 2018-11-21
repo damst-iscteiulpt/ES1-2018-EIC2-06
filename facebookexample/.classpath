@@ -34,6 +34,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Diogo Crava/git/ES1-2018-EIC2-06/facebookexample/libraries/twitter4j-4.0.7.zip"/>
+	<classpathentry kind="lib" path="C:/Users/migue/git/ES1-2018-EIC2-06/facebookexample/libraries/twitter4j-4.0.7.zip"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
