@@ -10,8 +10,11 @@ import com.sun.mail.smtp.SMTPTransport;
 
 public class Gmail {
 	
-	public static String HOST = "smtp.gmail.com";
-	public static String TRANSPORT_PROTOCOL = "smtps";
+	private static String HOST = "gmail.com";
+	private static String TRANSPORT_PROTOCOL = "smtp";
+	private static String STORE_PROTOCOL = "imap";
+	private static String SENDING_HOST = TRANSPORT_PROTOCOL + "." + HOST;
+	private static String RECEIVING_HOST = STORE_PROTOCOL + "." + HOST;
 	
 	public static String INBOX  = "Inbox";
 	public static String ALL_MAIL = "All Mail";
@@ -21,15 +24,64 @@ public class Gmail {
 	public static String STARRED = "Starred";
 	public static String TRASH = "Trash";
 	
-	private String email;
-	private String password;
+	private final String email;
+	private final String password;
+	private Properties properties;
+	private Session session;
+	private Store store;
+	private SMTPTransport smtpt;
 
-	public Gmail(String email, String password) {
+	public Gmail(String email, String password) throws NoSuchProviderException {
 		this.email = email;
 		this.password = password;
+		properties = new Properties();
+		properties.setProperty("mail.debug", "true");
+		properties.setProperty("mail.host", HOST);
+		properties.setProperty("mail.store.protocol", STORE_PROTOCOL);
+		properties.setProperty("mail.store.port", "993");
+		properties.setProperty("mail.imap.ssl.enable", "true");
+		properties.setProperty("mail.smtp.ssl.enable", "true");
+		properties.setProperty("mail.transport.protocol", TRANSPORT_PROTOCOL);
+//		properties.setProperty("mail.transport.port", "993");
+		session = Session.getDefaultInstance(properties, null);
+		store = session.getStore(STORE_PROTOCOL);
+	}
+	
+	public void connect() throws MessagingException {
+		Properties properties = new Properties();
+		store = Session.getDefaultInstance(properties).getStore();
+		System.out.println("step 1");
+		store.connect(RECEIVING_HOST, email, password);
+		System.out.println("step 2");
+		smtpt = (SMTPTransport) session.getTransport(TRANSPORT_PROTOCOL);
+		smtpt.connect(SENDING_HOST, email, password);
+		System.out.println("Store is: " + store.isConnected());
+		System.out.println("SMTP is: " + smtpt.isConnected());
+	}
+	
+	public Message[] getEmails(String folder) throws MessagingException {
+		 Folder folderObj = store.getFolder(folder);
+		 folderObj.open(Folder.READ_WRITE);
+		 return folderObj.getMessages();
+	}
+	
+	public void sendEmail(String receiversEmail, String subject, String content) throws MessagingException {
+		Message msg = new MimeMessage(session);
+		msg.setFrom(new InternetAddress(email));
+		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiversEmail, false));
+		msg.setSubject("Heisann " + System.currentTimeMillis());
+		msg.setText(content);
+		msg.setHeader("X-Mailer", subject);
+		msg.setSentDate(new Date());
+		smtpt.sendMessage(msg, msg.getAllRecipients());
+	}
+	
+	public void close() throws MessagingException {
+		store.close();
+		smtpt.close();
 	}
 
-	public static void doit() throws MessagingException, IOException {
+	public void doit() throws MessagingException, IOException {
 	    Folder folder = null;
 	    Store store = null ;
 	    try {
@@ -39,7 +91,7 @@ public class Gmail {
 	      Session session = Session.getDefaultInstance(props, null);
 //	       session.setDebug(true);
 	      store = session.getStore("imaps");
-	      store.connect("imap.gmail.com",email, password*);
+	      store.connect("imap.gmail.com",email, password);
 	      
 	      folder = store.getFolder(INBOX);
 	      
@@ -80,7 +132,7 @@ public class Gmail {
 	    }
 	  }
 
-	public void send_message(String conteudo, String sender_email, String header, String subject)
+	public void send_message(String receiversEmail, String content, String header, String subject)
 			throws MessagingException {
 		Properties props = System.getProperties();
 		props.put("mail.smtps.host", "smtp.gmail.com");
@@ -88,20 +140,16 @@ public class Gmail {
 		Session session = Session.getInstance(props, null);
 		Message msg = new MimeMessage(session);
 		msg.setFrom(new InternetAddress(email));
-		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(sender_email, false));
+		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiversEmail, false));
 		msg.setSubject("Heisann " + System.currentTimeMillis());
-		msg.setText(conteudo);
+		msg.setText(content);
 		msg.setHeader("X-Mailer", subject);
 		msg.setSentDate(new Date());
 		SMTPTransport t = (SMTPTransport) session.getTransport("smtps");
-		t.connect("smtp.gmail.com", email_sender, "262577136d");
+		t.connect("smtp.gmail.com", receiversEmail, "262577136d");
 		t.sendMessage(msg, msg.getAllRecipients());
 		System.out.println("Response: " + t.getLastServerResponse());
 		t.close();
-	}
-
-	public static void Testemail() throws Exception {
-		Gmail.doit();
 	}
 	
 }
