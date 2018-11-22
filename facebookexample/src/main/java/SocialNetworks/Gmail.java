@@ -9,9 +9,24 @@ import javax.mail.internet.MimeMessage;
 import com.sun.mail.smtp.SMTPTransport;
 
 public class Gmail {
+	
+	public static String HOST = "smtp.gmail.com";
+	public static String TRANSPORT_PROTOCOL = "smtps";
+	
+	public static String INBOX  = "Inbox";
+	public static String ALL_MAIL = "All Mail";
+	public static String DRAFTS = "Drafts";
+	public static String SENT_MAIL = "Sent Mail";
+	public static String SPAM = "Spam";
+	public static String STARRED = "Starred";
+	public static String TRASH = "Trash";
+	
+	private String email;
+	private String password;
 
-	public Gmail() {
-		
+	public Gmail(String email, String password) {
+		this.email = email;
+		this.password = password;
 	}
 
 	public static void doit() throws MessagingException, IOException {
@@ -26,15 +41,8 @@ public class Gmail {
 	      store = session.getStore("imaps");
 	      store.connect("imap.gmail.com",email, password*);
 	      
-	      folder = store.getFolder("Inbox");
-	      /* Others GMail folders :
-	       * [Gmail]/All Mail   This folder contains all of your Gmail messages.
-	       * [Gmail]/Drafts     Your drafts.
-	       * [Gmail]/Sent Mail  Messages you sent to other people.
-	       * [Gmail]/Spam       Messages marked as spam.
-	       * [Gmail]/Starred    Starred messages.
-	       * [Gmail]/Trash      Messages deleted from Gmail.
-	       */
+	      folder = store.getFolder(INBOX);
+	      
 	      folder.open(Folder.READ_WRITE);
 	      Message messages[] = folder.getMessages();
 	      System.out.println("No of Messages : " + folder.getMessageCount());
