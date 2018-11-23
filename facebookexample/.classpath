@@ -35,7 +35,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/Diogo Crava/git/ES1-2018-EIC2-06/facebookexample/libraries/javax.mail.jar"/>
 	<classpathentry kind="lib" path="libraries/twitter4j-core-4.0.7.jar"/>
+	<classpathentry kind="lib" path="libraries/javax.mail.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
