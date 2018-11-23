@@ -1,4 +1,4 @@
-package Main;
+package Control;
 
 import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
