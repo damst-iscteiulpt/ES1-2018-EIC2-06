@@ -31,7 +31,7 @@ public class FacebookMain {
 		 * Facebook posts when the code is executed.
 		 * 
 		 */
-		String accessToken2 = "EAACVRZBPYZCzwBADzg3t36I3WLJ9zVDolDrK2RRYWGZComgvuZCFe3SlW7yVZB9FmhJGElopG2VLkAg4ReZB1pZA1befZApXEu7CEmYXPKO6R08ZAB5IvnDdDVFoA6ZBdd2ZARtayQHWaeky0fLdwWdUAQT3tscUz9eU3qeaawLiSDXtJRKD8B6t15McDP9dvXXw4ZCSwmZApZAcsFrwZDZD";
+		String accessToken2 = "EAACVRZBPYZCzwBAL26A97KdCrqZBqy0qrgAbB9SvOrKHZB2wsZATpzQeR5aKg1dzyXVFESICKEPNLpFlHSBZAY987zcvK9q4b3LbfmSOZBZCt3mSprkB0NYGEqfNHestglu84oxDvCiCZCShXWL7b4OxJXyMoe2DHTqpShlLRDQoa4RzKi53wtFfANC7Jkk5IihruVb98VJ9BSgZDZD";
 		FacebookClient fbClient2 = new DefaultFacebookClient(accessToken2);
 		User me2 = fbClient2.fetchObject("me", User.class);
 		System.out.println("Facebook:");
