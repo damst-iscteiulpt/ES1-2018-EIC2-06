@@ -30,8 +30,16 @@ import javax.swing.JSplitPane;
 import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 
+import SocialNetworks.FacebookMain;
+import SocialNetworks.Gmail;
+import SocialNetworks.Twitter;
+
 public class Window extends JFrame {
 
+	
+	FacebookMain facebook;
+	Gmail gmail;
+	Twitter twitter;
 	JSplitPane splitPane;
 	JPanel mainPanel, buttonPanel, feedPanel, facebookPanel, twitterPanel, emailPanel;
 	JButton feedButton, facebookButton, twitterButton, emailButton;
