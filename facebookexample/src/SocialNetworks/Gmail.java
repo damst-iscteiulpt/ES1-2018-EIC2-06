@@ -45,6 +45,7 @@ public class Gmail {
 //		properties.setProperty("mail.transport.port", "993");
 	}
 	
+//Conection do the e-mail
 	public void connect() throws MessagingException {
 		session = Session.getDefaultInstance(properties, null);
 		store = session.getStore(STORE_PROTOCOL);
@@ -52,13 +53,13 @@ public class Gmail {
 		smtpt = (SMTPTransport) session.getTransport(TRANSPORT_PROTOCOL);
 		smtpt.connect(SENDING_HOST, email, password);
 	}
-	
+//Retrieve every mail	
 	public Message[] getEmails(String folder) throws MessagingException {
 		 Folder folderObj = store.getFolder(folder);
 		 folderObj.open(Folder.READ_WRITE);
 		 return folderObj.getMessages();
 	}
-	
+//Send email
 	public void sendEmail(String receiversEmail, String subject, String content) throws MessagingException {
 		Message msg = new MimeMessage(session);
 		msg.setFrom(new InternetAddress(email));
@@ -69,7 +70,7 @@ public class Gmail {
 		msg.setSentDate(new Date());
 		smtpt.sendMessage(msg, msg.getAllRecipients());
 	}
-	
+//close gmail	
 	public void close() throws MessagingException {
 		store.close();
 		smtpt.close();

@@ -23,7 +23,7 @@ public final class Twitter  {
     		int counter=0;
     		int counterTotal = 0;
             for (Status status : statuses) {
-				// Filters only tweets from user "catarina"
+				// Filters only tweets from user "9GAG"
 				if (status.getUser().getName() != null && status.getUser().getName().contains("9GAG")) {
 					System.out.println(status.getUser().getName() + ":" + status.getText());
 					counter++;
