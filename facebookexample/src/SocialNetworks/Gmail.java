@@ -6,6 +6,8 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.mail.smtp.SMTPTransport;
 
 public class Gmail {
@@ -53,7 +55,13 @@ public class Gmail {
 		smtpt = (SMTPTransport) session.getTransport(TRANSPORT_PROTOCOL);
 		smtpt.connect(SENDING_HOST, email, password);
 	}
-//Retrieve every mail	
+
+	/**
+	 * 
+	 * @param folder
+	 * @return 
+	 * @throws MessagingException
+	 */
 	public Message[] getEmails(String folder) throws MessagingException {
 		 Folder folderObj = store.getFolder(folder);
 		 folderObj.open(Folder.READ_WRITE);

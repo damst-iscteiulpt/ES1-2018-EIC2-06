@@ -48,6 +48,9 @@ public class Window extends JFrame {
 		init();
 	}
 
+	/**
+	 * 
+	 */
 	public void init() {
 		setName("ES1 Project");
 		setTitle("ES1 Project");

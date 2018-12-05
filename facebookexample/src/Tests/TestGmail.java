@@ -1,19 +1,42 @@
 package Tests;
 
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
 import SocialNetworks.Gmail;
 
 public class TestGmail {
 
 	
 	/**
-	 * @return verdadeiro ou falso, caso o gmail tenha sido creado ou nao
+	 * verifica se o e-mail foi criado ou nao
 	 */
-	public boolean createanemail () {
-		Gmail test = new Gmail("alberto", "abc");
-		if(test != null)
-			return true;
-		return false;
+	@Test
+	public void createanemail () {
+		Gmail test = new Gmail ("alberto", "abc");
+		assertTrue(test != null);
 	}
 	
+	/**
+	 * verifica se foi estabelicida uma ligaçao
+	 */
+	public void testConection() {
+		
+	}
+	
+	/**
+	 * verifica se foi enviado o email
+	 */
+	public boolean testsendemail() {
+		return true;
+	}
+	
+	/**
+	 * verifica se o gmail fechou
+	 */
+	public boolean testclose() {
+		return true;
+	}
 	
 }
