@@ -1,0 +1,79 @@
+1. Nome Trigger: logs_inserir_Medicoes
+
+//Vai inserir um novo log.
+
+CREATE TRIGGER logs_inserir_medicoes AFTER INSERT
+ ON Mysql.medicoes FOR EACH ROW 
+BEGIN
+    Declare IDLog int (11);
+    Declare UserWhoTriggered varchar (50);
+    Declare EventType enum("U","D","I");
+    Declare EventDescription text;
+    Declare Data timestamp;
+    Declare TriggeredTable varchar (50);
+
+    SET IDLog = (SELECT IDLog FROM Mysql.logsparaauditoria SET ORDER BY IDLog DESC LIMIT 1); 
+    SET IDLog=IDLog+1;
+    SET UserWhoTriggered = USER();
+    SET EventType = "I";
+    SET EvenTDescription = "Insert de log de medicoes";
+    SET Data=current_timestamp +0;
+    SET TriggeredTable=medicoes;
+
+INSERT INTO logsparaauditoria values (IDLog, UserWhoTriggered,EventType ,EventDescription ,TriggeredTable);
+    END
+
+
+
+
+2. Nome Trigger: logs_inserir_Investigador
+
+//Vai inserir um novo log.
+
+CREATE TRIGGER logs_inserir_investigador AFTER INSERT
+ ON Mysql.investigador FOR EACH ROW 
+BEGIN
+    Declare IDLog int (11);
+    Declare UserWhoTriggered varchar (50);
+    Declare EventType enum("U","D","I");
+    Declare EventDescription text;
+    Declare Data timestamp;
+    Declare TriggeredTable varchar (50);
+
+    SET IDLog = (SELECT IDLog FROM Mysql.logparaauditoria SET ORDER BY IDLog DESC LIMIT 1); 
+    SET IDLog=IDLog+1;
+    SET UserWhoTriggered = USER();
+    SET EventType = "I";
+    SET EventDescription = "Insert de log de Investigador";
+    SET Data=current_timestamp +0;
+    SET TriggeredTable=investigador;
+
+INSERT INTO logparaauditoria values (IDLog, UserWhoTriggered,EventType ,EventDescription ,TriggeredTable);
+    END
+
+
+3. Nome Trigger: logs_inserir_Sistema
+
+//Na atualizacao do sistema vai inserir um novo log.
+
+CREATE TRIGGER logs_inserir_sistema AFTER UPDATE
+ ON Mysql.Sistema FOR EACH ROW 
+BEGIN
+    Declare IDLog int (11);
+    Declare UserWhoTriggered varchar (50);
+    Declare EventType enum("U","D","I");
+    Declare EventDescription text;
+    Declare Data timestamp;
+    Declare TriggeredTable varchar (50);
+
+    SET IDLog = (SELECT IDLog FROM Mysql.logparaauditoria SET ORDER BY IDLog DESC LIMIT 1); 
+
+    SET IDLog=IDLog+1;
+    SET UserWhoTriggered = USER();
+    SET EventType = "I";
+    SET EventDescription = "Insert de log de Sistema";
+    SET Data=current_timestamp +0;
+    SET TriggeredTable=sistema;
+
+INSERT INTO logparaauditoria values (IDLog, UserWhoTriggered,EventType ,EventDescription ,TriggeredTable);
+    END
